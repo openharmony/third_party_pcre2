@@ -57,6 +57,11 @@ ohos_shared_library("libpcre2") {
     "-DHAVE_CONFIG_H",
     "-w",
   ]
+  install_enable = true
+  install_images = [
+    "system",
+    "ramdisk",
+  ]
   license_file = "$PCRE2_LIB_DIR/LICENCE"
   part_name = "selinux"
   subsystem_name = "security"
