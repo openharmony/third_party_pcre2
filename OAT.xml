@@ -66,6 +66,17 @@
                 <policyitem type="compatibility" name="FSF Unlimited License" path="pcre2/INSTALL" desc="兼容license"/>
                 <policyitem type="compatibility" name="GNU GPL" path="pcre2/Makefile.am" desc="兼容license"/>
                 <policyitem type="compatibility" name="Cygwin licence" path="pcre2/NON-AUTOTOOLS-BUILD" desc="兼容license"/>
+                <policyitem type="license" name="Cygwin licence" path="pcre2/NON-AUTOTOOLS-BUILD" desc="兼容license"/>
+                <policyitem type="license" name="BSD LICENCE" path="pcre2/doc/pcre2test.1" desc="兼容license"/>
+                <policyitem type="license" name="BSD LICENCE" path="pcre2/src/pcre2_chartables.c.dist" desc="兼容license"/>
+                <policyitem type="compatibility" name="BSD LICENCE" path="pcre2/src/pcre2_chartables.c.dist" desc="兼容license"/>
+                <policyitem type="license" name="BSD-3-Clause" path="pcre2/cmake/COPYING-CMAKE-SCRIPTS" desc="兼容license"/>
+                <policyitem type="compatibility" name="BSD-3-Clause" path="pcre2/cmake/COPYING-CMAKE-SCRIPTS" desc="兼容license"/>
+                <policyitem type="license" name="BSD LICENCE" path="pcre2/RunTest.bat" desc="兼容license"/>
+                <policyitem type="license" name="BSD LICENCE" path="pcre2/COPYING" desc="兼容license"/>
+                <policyitem type="license" name="FSF Unlimited License" path="pcre2/INSTALL" desc="兼容license"/>
+                <policyitem type="license" name="BSD-2-clause" path="pcre2/LICENCE" desc="兼容license"/>
+                <policyitem type="license" name="GNU GPL" path="pcre2/Makefile.am" desc="兼容license"/>
             </policy>
         </policylist>
         <filefilterlist>
