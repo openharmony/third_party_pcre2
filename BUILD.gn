@@ -61,6 +61,7 @@ ohos_shared_library("libpcre2") {
   install_images = [
     "system",
     "ramdisk",
+    "updater",
   ]
   license_file = "$PCRE2_LIB_DIR/LICENCE"
   part_name = "selinux"
