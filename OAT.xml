@@ -108,6 +108,18 @@
                 <filteritem type="filepath" name="pcre2/src/sljit/.*.c" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/132html" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/CleanTxt" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateUtt.py" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/ManyConfigTests" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/MultiStage2.py" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/pcre2_chartables.c.non-standard" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/autogen.sh" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/utf8.c" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/pcre2_fuzzer.dict" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/pcre2_fuzzer.options" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/ucptestdata/testinput1" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/ucptestdata/testinput2" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/ucptestdata/testoutput1" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/ucptestdata/testoutput2" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/testdata/.*" desc="Describe the reason for filtering scan results"/>
                 <filteritem type="filepath" name="include/pcre2.h" desc="Describe the reason for filtering scan results"/>
                 <filteritem type="filepath" name="pcre2/PrepareRelease" desc="Describe the reason for filtering scan results"/>
@@ -235,7 +247,6 @@
                     @rem Updated for new test 14 (moving others up a number), August 2015.
                     @rem Tidied and updated for new tests 21, 22, 23 by PH, October 2015.
                     @rem PH added missing &quot;set type&quot; for test 22, April 2016.
-                    @rem PH added copy command for new testbtables file, November 2020
                 " desc=""/>
                 <licensetext name="
                     Please see the file LICENCE in the PCRE2 distribution for licensing details.

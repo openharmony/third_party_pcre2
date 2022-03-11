@@ -2,27 +2,6 @@ News about PCRE2 releases
 -------------------------
 
 
-Version 10.37 26-May-2021
--------------------------
-
-A few more bug fixes and tidies. The only change of real note is the removal of
-the actual POSIX names regcomp etc. from the POSIX wrapper library because
-these have caused issues for some applications (see 10.33 #2 below).
-
-
-Version 10.36 04-December-2020
-------------------------------
-
-Again, mainly bug fixes and tidies. The only enhancements are the addition of
-GNU grep's -m (aka --max-count) option to pcre2grep, and also unifying the
-handling of substitution strings for both -O and callouts in pcre2grep, with
-the addition of $x{...} and $o{...} to allow for characters whose code points
-are greater than 255 in Unicode mode.
-
-NOTE: there is an outstanding issue with JIT support for MacOS on arm64
-hardware. For details, please see Bugzilla issue #2618.
-
-
 Version 10.35 15-April-2020
 ---------------------------
 
