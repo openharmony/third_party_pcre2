@@ -2189,6 +2189,8 @@
 
 /a(*MARK)b/
 
+/(?i:A{1,}\6666666666)/
+
 /\g6666666666/
 
 /[\g6666666666]/B
@@ -5830,19 +5832,6 @@ a)"xI
 
 /55|a(..)d/g,replace=>$1<
     xyz55abcdxyzabcdxyz\=ovector=2,substitute_unset_empty
-    
-/abc/replace=,caseless
-    XabcY
-    XABCY 
-
-/abc/replace=[4],caseless
-    XabcY
-    XABCY 
-
-/abc/replace=*,caseless
-    XabcY
-    XABCY
-    XabcY\=replace=  
 
 # Expect non-fixed-length error
 
@@ -5861,7 +5850,7 @@ a)"xI
 /^\w+/tables=3
     École
 
-#loadtables ./testbtables
+#loadtables ./testdata/testbtables
 
 /^\w+/tables=3
     École
@@ -5874,23 +5863,5 @@ a)"xI
 
 /"(*MARK:>" 00 "<).(?C1)."/hex,mark,no_start_optimize
     AB
-
-/(?(VERSION=0.0/
-
-# Perl has made \K in lookarounds an error. At the moment PCRE2 still accepts.
-
-/(?=a\Kb)ab/
-    ab 
-
-/(?!a\Kb)ac/
-    ac 
-    
-/^abc(?<=b\Kc)d/
-    abcd
-
-/^abc(?<!b\Kq)d/
-    abcd
-    
-# --------- 
 
 # End of testinput2
