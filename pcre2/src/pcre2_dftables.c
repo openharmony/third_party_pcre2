@@ -63,7 +63,7 @@ given, they are written in binary. */
 #include "pcre2_maketables.c"
 
 
-static const char *classlist[] =
+static char *classlist[] =
   {
   "space", "xdigit", "digit", "upper", "lower",
   "word", "graph", "print", "punct", "cntrl"
@@ -97,7 +97,7 @@ FILE *f;
 int i;
 int nclass = 0;
 BOOL binary = FALSE;
-char *env = (char *)"C";
+char *env = "C";
 const unsigned char *tables;
 const unsigned char *base_of_tables;
 
@@ -105,7 +105,7 @@ const unsigned char *base_of_tables;
 
 for (i = 1; i < argc; i++)
   {
-  char *arg = argv[i];
+  unsigned char *arg = (unsigned char *)argv[i];
   if (*arg != '-') break;
 
   if (strcmp(arg, "-help") == 0 || strcmp(arg, "--help") == 0)

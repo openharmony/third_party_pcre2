@@ -4,17 +4,16 @@ README file for PCRE2 (Perl-compatible regular expression library)
 PCRE2 is a re-working of the original PCRE1 library to provide an entirely new
 API. Since its initial release in 2015, there has been further development of
 the code and it now differs from PCRE1 in more than just the API. There are new
-features, and the internals have been improved. The original PCRE1 library is
-now obsolete and should not be used in new projects. The latest release of
-PCRE2 is available in three alternative formats from:
+features and the internals have been improved. The latest release of PCRE2 is
+available in three alternative formats from:
 
 https://ftp.pcre.org/pub/pcre/pcre2-10.xx.tar.gz
 https://ftp.pcre.org/pub/pcre/pcre2-10.xx.tar.bz2
 https://ftp.pcre.org/pub/pcre/pcre2-10.xx.tar.zip
 
-There is a mailing list for discussion about the development of PCRE at
-pcre-dev@exim.org. You can access the archives and subscribe or manage your
-subscription here:
+There is a mailing list for discussion about the development of PCRE (both the
+original and new APIs) at pcre-dev@exim.org. You can access the archives and
+subscribe or manage your subscription here:
 
    https://lists.exim.org/mailman/listinfo/pcre-dev
 
@@ -298,8 +297,8 @@ library. They are also documented in the pcre2build man page.
   unaddressable. This allows it to detect invalid memory accesses, and is
   mostly useful for debugging PCRE2 itself.
 
-. In environments where the gcc compiler is used and lcov is installed, if you
-  specify
+. In environments where the gcc compiler is used and lcov version 1.6 or above
+  is installed, if you specify
 
   --enable-coverage
 
@@ -758,15 +757,6 @@ that represent character classes for code points less than 256. The final
     8   decimal digit
    16   alphanumeric or '_'
 
-You can also specify -b (with or without -L) when running pcre2_dftables. This
-causes the tables to be written in binary instead of as source code. A set of
-binary tables can be loaded into memory by an application and passed to
-pcre2_compile() in the same way as tables created dynamically by calling
-pcre2_maketables(). The tables are just a string of bytes, independent of
-hardware characteristics such as endianness. This means they can be bundled
-with an application that runs in different environments, to ensure consistent
-behaviour.
-
 See also the pcre2build section "Creating character tables at build time".
 
 
@@ -902,6 +892,6 @@ The distribution should contain the files listed below.
                           )   environments
 
 Philip Hazel
-Email local part: Philip.Hazel
-Email domain: gmail.com
-Last updated: 28 April 2021
+Email local part: ph10
+Email domain: cam.ac.uk
+Last updated: 20 March 2020
