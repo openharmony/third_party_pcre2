@@ -9,21 +9,21 @@ dnl The PCRE2_PRERELEASE feature is for identifying release candidates. It might
 dnl be defined as -RC2, for example. For real releases, it should be empty.
 
 m4_define(pcre2_major, [10])
-m4_define(pcre2_minor, [35])
+m4_define(pcre2_minor, [39])
 m4_define(pcre2_prerelease, [])
-m4_define(pcre2_date, [2020-05-09])
+m4_define(pcre2_date, [2021-10-29])
 
 # Libtool shared library interface versions (current:revision:age)
-m4_define(libpcre2_8_version,     [10:0:10])
-m4_define(libpcre2_16_version,    [10:0:10])
-m4_define(libpcre2_32_version,    [10:0:10])
-m4_define(libpcre2_posix_version, [2:3:0])
+m4_define(libpcre2_8_version,     [10:4:10])
+m4_define(libpcre2_16_version,    [10:4:10])
+m4_define(libpcre2_32_version,    [10:4:10])
+m4_define(libpcre2_posix_version, [3:1:0])
 
 # NOTE: The CMakeLists.txt file searches for the above variables in the first
 # 50 lines of this file. Please update that if the variables above are moved.
 
-AC_PREREQ(2.57)
-AC_INIT(PCRE2, pcre2_major.pcre2_minor[]pcre2_prerelease, , pcre2)
+AC_PREREQ([2.60])
+AC_INIT([PCRE2],pcre2_major.pcre2_minor[]pcre2_prerelease,[],[pcre2])
 AC_CONFIG_SRCDIR([src/pcre2.h.in])
 AM_INIT_AUTOMAKE([dist-bzip2 dist-zip])
 m4_ifdef([AM_SILENT_RULES], [AM_SILENT_RULES([yes])])
@@ -64,8 +64,7 @@ m4_ifdef([AM_PROG_AR], [AM_PROG_AR])
 AC_TYPE_INT64_T
 
 AC_PROG_INSTALL
-AC_LIBTOOL_WIN32_DLL
-LT_INIT
+LT_INIT([win32-dll])
 AC_PROG_LN_S
 
 # Check for GCC visibility feature
@@ -424,7 +423,7 @@ case "$enable_newline" in
   anycrlf) ac_pcre2_newline_value=5 ;;
   nul)     ac_pcre2_newline_value=6 ;;
   *)
-  AC_MSG_ERROR([invalid argument \"$enable_newline\" to --enable-newline option])
+  AC_MSG_ERROR([invalid argument "$enable_newline" to --enable-newline option])
   ;;
 esac
 
@@ -453,7 +452,7 @@ fi
 case "$with_link_size" in
   2|3|4) ;;
   *)
-  AC_MSG_ERROR([invalid argument \"$with_link_size\" to --with-link-size option])
+  AC_MSG_ERROR([invalid argument "$with_link_size" to --with-link-size option])
   ;;
 esac
 
@@ -486,7 +485,6 @@ HAVE_BCOPY is defined. If your system has neither bcopy() nor memmove(), make
 sure both macros are undefined; an emulation function will then be used. */])
 
 # Checks for header files.
-AC_HEADER_STDC
 AC_CHECK_HEADERS(limits.h sys/types.h sys/stat.h dirent.h)
 AC_CHECK_HEADERS([windows.h], [HAVE_WINDOWS_H=1])
 AC_CHECK_HEADERS([sys/wait.h], [HAVE_SYS_WAIT_H=1])
@@ -514,7 +512,7 @@ AC_TYPE_SIZE_T
 
 # Checks for library functions.
 
-AC_CHECK_FUNCS(bcopy memfd_create memmove mkostemp secure_getenv strerror)
+AC_CHECK_FUNCS(bcopy memfd_create memmove mkostemp realpath secure_getenv strerror)
 
 # Check for the availability of libz (aka zlib)
 
@@ -1006,7 +1004,27 @@ fi # enable_coverage
 
 AM_CONDITIONAL([WITH_GCOV],[test "x$enable_coverage" = "xyes"])
 
+AC_MSG_CHECKING([whether Intel CET is enabled])
+AC_LANG_PUSH([C])
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM(,
+                   [[#ifndef __CET__
+# error CET is not enabled
+#endif]])],
+                   [pcre2_cc_cv_intel_cet_enabled=yes],
+                   [pcre2_cc_cv_intel_cet_enabled=no])
+AC_MSG_RESULT([$pcre2_cc_cv_intel_cet_enabled])
+if test "$pcre2_cc_cv_intel_cet_enabled" = yes; then
+  CET_CFLAGS="-mshstk"
+  AC_SUBST([CET_CFLAGS])
+fi
+AC_LANG_POP([C])
+
+# LIB_POSTFIX is used by CMakeLists.txt for Windows debug builds.
+# Pass empty LIB_POSTFIX to *.pc files and pcre2-config here.
+AC_SUBST(LIB_POSTFIX)
+
 # Produce these files, in addition to config.h.
+
 AC_CONFIG_FILES(
 	Makefile
 	libpcre2-8.pc

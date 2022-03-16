@@ -289,8 +289,11 @@ corresponding characters in the subject. As a trivial example, the pattern
   The quick brown fox
 </pre>
 matches a portion of a subject string that is identical to itself. When
-caseless matching is specified (the PCRE2_CASELESS option), letters are matched
-independently of case.
+caseless matching is specified (the PCRE2_CASELESS option or (?i) within the
+pattern), letters are matched independently of case. Note that there are two
+ASCII characters, K and S, that, in addition to their lower case ASCII
+equivalents, are case-equivalent with Unicode U+212A (Kelvin sign) and U+017F
+(long S) respectively when either PCRE2_UTF or PCRE2_UCP is set.
 </P>
 <P>
 The power of regular expressions comes from the ability to include wild cards,
@@ -326,6 +329,20 @@ a character class the only metacharacters are:
   [      POSIX character class (if followed by POSIX syntax)
   ]      terminates the character class
 </pre>
+If a pattern is compiled with the PCRE2_EXTENDED option, most white space in
+the pattern, other than in a character class, and characters between a #
+outside a character class and the next newline, inclusive, are ignored. An
+escaping backslash can be used to include a white space or a # character as
+part of the pattern. If the PCRE2_EXTENDED_MORE option is set, the same
+applies, but in addition unescaped space and horizontal tab characters are
+ignored inside a character class. Note: only these two characters are ignored,
+not the full set of pattern white space characters that are ignored outside a
+character class. Option settings can be changed within a pattern; see the
+section entitled
+<a href="#internaloptions">"Internal Option Setting"</a>
+below.
+</P>
+<P>
 The following sections describe the use of each of the metacharacters.
 </P>
 <br><a name="SEC5" href="#TOC1">BACKSLASH</a><br>
@@ -343,16 +360,9 @@ precede a non-alphanumeric with backslash to specify that it stands for itself.
 In particular, if you want to match a backslash, you write \\.
 </P>
 <P>
-In a UTF mode, only ASCII digits and letters have any special meaning after a
-backslash. All other characters (in particular, those whose code points are
-greater than 127) are treated as literals.
-</P>
-<P>
-If a pattern is compiled with the PCRE2_EXTENDED option, most white space in
-the pattern (other than in a character class), and characters between a #
-outside a character class and the next newline, inclusive, are ignored. An
-escaping backslash can be used to include a white space or # character as part
-of the pattern.
+Only ASCII digits and letters have any special meaning after a backslash. All
+other characters (in particular, those whose code points are greater than 127)
+are treated as literals.
 </P>
 <P>
 If you want to treat all characters in a sequence as literals, you can do so by
@@ -735,7 +745,7 @@ Unicode support is not needed for these characters to be recognized.
 <P>
 It is possible to restrict \R to match only CR, LF, or CRLF (instead of the
 complete set of Unicode line endings) by setting the option PCRE2_BSR_ANYCRLF
-at compile time. (BSR is an abbrevation for "backslash R".) This can be made
+at compile time. (BSR is an abbreviation for "backslash R".) This can be made
 the default when PCRE2 is built; if this is the case, the other behaviour can
 be requested via the PCRE2_BSR_UNICODE option. It is also possible to specify
 these settings by starting a pattern string with one of the following
@@ -824,6 +834,7 @@ Common,
 Coptic,
 Cuneiform,
 Cypriot,
+Cypro_Minoan,
 Cyrillic,
 Deseret,
 Devanagari,
@@ -907,6 +918,7 @@ Old_Persian,
 Old_Sogdian,
 Old_South_Arabian,
 Old_Turkic,
+Old_Uyghur,
 Oriya,
 Osage,
 Osmanya,
@@ -938,6 +950,7 @@ Tai_Tham,
 Tai_Viet,
 Takri,
 Tamil,
+Tangsa,
 Tangut,
 Telugu,
 Thaana,
@@ -945,9 +958,11 @@ Thai,
 Tibetan,
 Tifinagh,
 Tirhuta,
+Toto,
 Ugaritic,
 Unknown,
 Vai,
+Vithkuqi,
 Wancho,
 Warang_Citi,
 Yezidi,
@@ -1080,7 +1095,7 @@ additional characters according to the following rules for ending a cluster:
 3. Do not break Hangul (a Korean script) syllable sequences. Hangul characters
 are of five types: L, V, T, LV, and LVT. An L character may be followed by an
 L, V, LV, or LVT character; an LV or V character may be followed by a V or T
-character; an LVT or T character may be follwed only by a T character.
+character; an LVT or T character may be followed only by a T character.
 </P>
 <P>
 4. Do not end before extending characters or spacing marks or the "zero-width
@@ -1165,8 +1180,11 @@ For example, when the pattern
 matches "foobar", the first substring is still set to "foo".
 </P>
 <P>
-Perl documents that the use of \K within assertions is "not well defined". In
-PCRE2, \K is acted upon when it occurs inside positive assertions, but is
+From version 5.32.0 Perl forbids the use of \K in lookaround assertions. From
+release 10.38 PCRE2 also forbids this by default. However, the
+PCRE2_EXTRA_ALLOW_LOOKAROUND_BSK option can be used when calling
+<b>pcre2_compile()</b> to re-enable the previous behaviour. When this option is
+set, \K is acted upon when it occurs inside positive assertions, but is
 ignored in negative assertions. Note that when a pattern such as (?=ab\K)
 matches, the reported start of the match can be greater than the end of the
 match. Using \K in a lookbehind assertion at the start of a pattern can also
@@ -1443,7 +1461,10 @@ Characters in a class may be specified by their code points using \o, \x, or
 \N{U+hh..} in the usual way. When caseless matching is set, any letters in a
 class represent both their upper case and lower case versions, so for example,
 a caseless [aeiou] matches "A" as well as "a", and a caseless [^aeiou] does not
-match "A", whereas a caseful version would.
+match "A", whereas a caseful version would. Note that there are two ASCII
+characters, K and S, that, in addition to their lower case ASCII equivalents,
+are case-equivalent with Unicode U+212A (Kelvin sign) and U+017F (long S)
+respectively when either PCRE2_UTF or PCRE2_UCP is set.
 </P>
 <P>
 Characters that might indicate line breaks are never treated in any special way
@@ -2883,7 +2904,7 @@ breaks):
   (?(DEFINE) (?&#60;byte&#62; 2[0-4]\d | 25[0-5] | 1\d\d | [1-9]?\d) )
   \b (?&byte) (\.(?&byte)){3} \b
 </pre>
-The first part of the pattern is a DEFINE group inside which a another group
+The first part of the pattern is a DEFINE group inside which another group
 named "byte" is defined. This matches an individual component of an IPv4
 address (a number less than 256). When matching takes place, this part of the
 pattern is skipped because DEFINE acts like a false condition. The rest of the
@@ -3593,7 +3614,7 @@ successful match if there is a later mismatch. Consider:
 </pre>
 If the subject is "aaaac...", after the first match attempt fails (starting at
 the first character in the string), the starting point skips on to start the
-next attempt at "c". Note that a possessive quantifer does not have the same
+next attempt at "c". Note that a possessive quantifier does not have the same
 effect as this example; although it would suppress backtracking during the
 first match attempt, the second attempt would start at the second character
 instead of skipping on to "c".
@@ -3831,16 +3852,16 @@ there is a backtrack at the outer level.
 <P>
 Philip Hazel
 <br>
-University Computing Service
+Retired from University Computing Service
 <br>
 Cambridge, England.
 <br>
 </P>
 <br><a name="SEC32" href="#TOC1">REVISION</a><br>
 <P>
-Last updated: 24 February 2020
+Last updated: 30 August 2021
 <br>
-Copyright &copy; 1997-2020 University of Cambridge.
+Copyright &copy; 1997-2021 University of Cambridge.
 <br>
 <p>
 Return to the <a href="index.html">PCRE2 index page</a>.
