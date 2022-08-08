@@ -24,6 +24,7 @@
             <policy name="projectPolicy" desc="">
                 <policyitem type="copyright" name="University of Cambridge" path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>
                 <policyitem type="copyright" name="北京万里红科技有限公司" path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>
+                <policyitem type="copyright" name="Huawei Device Co., Ltd." path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>
                 <policyitem type="copyright" name="Steven G. Johnson &lt;stevenj@alum.mit.edu&gt;" path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>
                 <policyitem type="copyright" name="Daniel Richard G. &lt;skunk@iSKUNK.ORG&gt;" path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>
                 <policyitem type="copyright" name="X Consortium" path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>

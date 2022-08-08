@@ -17,24 +17,54 @@ import("//build/ohos.gni")
 PCRE2_LIB_DIR = "//third_party/pcre2/pcre2"
 
 ohos_shared_library("libpcre2") {
-  exec_script("/usr/bin/env",
-              [
-                "cp",
-                rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
-                rebase_path("$PCRE2_LIB_DIR/src/config.h"),
-              ])
-  exec_script("/usr/bin/env",
-              [
-                "cp",
-                rebase_path("$PCRE2_LIB_DIR/src/pcre2.h.generic"),
-                rebase_path("$PCRE2_LIB_DIR/src/pcre2.h"),
-              ])
-  exec_script("/usr/bin/env",
-              [
-                "cp",
-                rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c.dist"),
-                rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c"),
-              ])
+  md5_check_script = rebase_path("$PCRE2_LIB_DIR/check_md5.sh")
+  _arguments_config = [
+    rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
+    rebase_path("$PCRE2_LIB_DIR/src/config.h"),
+  ]
+
+  check_config_result =
+      exec_script(md5_check_script, _arguments_config, "string")
+  if (check_config_result == "") {
+    exec_script("/usr/bin/env",
+                [
+                  "cp",
+                  rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
+                  rebase_path("$PCRE2_LIB_DIR/src/config.h"),
+                ])
+  }
+
+  _arguments_pcre2 = [
+    rebase_path("$PCRE2_LIB_DIR/src/pcre2.h.generic"),
+    rebase_path("$PCRE2_LIB_DIR/src/pcre2.h"),
+  ]
+
+  check_pcre2_result = exec_script(md5_check_script, _arguments_pcre2, "string")
+  if (check_pcre2_result == "") {
+    exec_script("/usr/bin/env",
+                [
+                  "cp",
+                  rebase_path("$PCRE2_LIB_DIR/src/pcre2.h.generic"),
+                  rebase_path("$PCRE2_LIB_DIR/src/pcre2.h"),
+                ])
+  }
+
+  _arguments_pcre2_chartables = [
+    rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c.dist"),
+    rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c"),
+  ]
+
+  check_pcre2_chartables_result =
+      exec_script(md5_check_script, _arguments_pcre2_chartables, "string")
+  if (check_pcre2_chartables_result == "") {
+    exec_script("/usr/bin/env",
+                [
+                  "cp",
+                  rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c.dist"),
+                  rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c"),
+                ])
+  }
+
   output_name = "libpcre2"
   sources = [
     "$PCRE2_LIB_DIR/src/pcre2_auto_possess.c",
