@@ -3,7 +3,7 @@
     "Name": "PCRE2",
     "License": "PCRE2 LICENCE",
     "License File": "LICENSE",
-    "Version Number": "pcre2-10.39",
+    "Version Number": "pcre2-10.40",
     "Owner": "jiangxiaofeng8@huawei.com",
     "Upstream URL": "https://github.com/PhilipHazel/pcre2.git",
     "Description": "pcre2 is a re_working of the original PCRE1 library to provide an entirely new API."
