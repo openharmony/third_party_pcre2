@@ -15,9 +15,9 @@
         "subsystem": "",
         "syscap": [],
         "features": [],
-        "adapted_system_type": [],
-        "rom": "",
-        "ram": "",
+        "adapted_system_type": [ "standard" ],
+        "rom": "150KB",
+        "ram": "0KB",
         "deps": {
             "components": [],
             "third_party": []
