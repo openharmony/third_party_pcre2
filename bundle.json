@@ -11,13 +11,13 @@
     "scripts": {},
     "licensePath": "pcre2/LICENSE",
     "component": {
-        "name": "thirdparty_pcre2",
-        "subsystem": "",
+        "name": "pcre2",
+        "subsystem": "thirdparty",
         "syscap": [],
         "features": [],
         "adapted_system_type": [ "standard" ],
-        "rom": "150KB",
-        "ram": "0KB",
+        "rom": "512KB",
+        "ram": "512KB",
         "deps": {
             "components": [],
             "third_party": []
