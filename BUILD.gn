@@ -110,7 +110,7 @@ ohos_shared_library("libpcre2") {
     "updater",
   ]
   license_file = "$PCRE2_LIB_DIR/LICENCE"
-  innerapi_tags = [ 
+  innerapi_tags = [
     "platformsdk_indirect",
     "chipsetsdk_indirect",
   ]
