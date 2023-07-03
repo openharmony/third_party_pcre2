@@ -114,6 +114,6 @@ ohos_shared_library("libpcre2") {
     "platformsdk_indirect",
     "chipsetsdk_indirect",
   ]
-  part_name = "selinux"
-  subsystem_name = "security"
+  part_name = "pcre2"
+  subsystem_name = "thirdparty"
 }
