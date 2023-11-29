@@ -121,6 +121,11 @@
                 <filteritem type="filepath" name="pcre2/maint/ucptestdata/testinput2" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/ucptestdata/testoutput1" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/ucptestdata/testoutput2" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/src/pcre2posix_test.c" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/MODULE.bazel" desc="Copyright Header Invalid: NULL"/>
+                <filteritem type="filepath" name="pcre2/WORKSPACE.bazel" desc="Copyright Header Invalid: NULL"/>
+                <filteritem type="filepath" name="pcre2/BUILD.bazel" desc="Copyright Header Invalid: NULL"/>
+                <filteritem type="filepath" name="pcre2/.bazelrc" desc="Copyright Header Invalid: NULL"/>
                 <filteritem type="filepath" name="pcre2/testdata/.*" desc="Describe the reason for filtering scan results"/>
                 <filteritem type="filepath" name="include/pcre2.h" desc="Describe the reason for filtering scan results"/>
                 <filteritem type="filepath" name="pcre2/PrepareRelease" desc="Describe the reason for filtering scan results"/>

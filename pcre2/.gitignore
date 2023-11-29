@@ -1,11 +1,15 @@
 # Public .gitignore file for PCRE2
 
 *.a
+*.gcda
+*.gcno
 *.lo
 *.la
 *.pc
 *.o
 *~
+
+*-coverage*
 
 __pycache__
 .deps
@@ -37,6 +41,9 @@ pcre2_dftables
 pcre2_jit_test
 pcre2_jit_test.log
 pcre2_jit_test.trs
+pcre2posix_test
+pcre2posix_test.log
+pcre2posix_test.trs
 pcre2demo
 pcre2fuzzcheck
 pcre2grep
@@ -74,5 +81,7 @@ src/config.h
 src/pcre2.h
 src/pcre2_chartables.c
 src/stamp-h1
+
+/bazel-*
 
 # End
