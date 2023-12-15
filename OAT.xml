@@ -110,6 +110,11 @@
                 <filteritem type="filepath" name="pcre2/132html" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/CleanTxt" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/GenerateUtt.py" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateUcpTables.py" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateCommon.py" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateTest26.py" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateUcd.py" desc="InvalidCopyright"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateUcpHeader.py" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/ManyConfigTests" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/MultiStage2.py" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/pcre2_chartables.c.non-standard" desc="InvalidCopyright"/>
