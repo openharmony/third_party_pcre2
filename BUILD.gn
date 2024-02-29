@@ -16,6 +16,12 @@ import("//build/ohos.gni")
 
 PCRE2_LIB_DIR = "//third_party/pcre2/pcre2"
 
+config("third_party_pcre2_config") {
+  include_dirs = [
+    "$PCRE2_LIB_DIR/src"
+  ]
+}
+
 ohos_shared_library("libpcre2") {
   md5_check_script = rebase_path("$PCRE2_LIB_DIR/check_md5.sh")
   _arguments_config = [
