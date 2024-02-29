@@ -102,6 +102,7 @@ ohos_shared_library("libpcre2") {
     "$PCRE2_LIB_DIR/src/pcre2_xclass.c",
   ]
   include_dirs = [ "$PCRE2_LIB_DIR/src" ]
+  public_configs = [ ":third_party_pcre2_config" ]
   cflags = [
     "-D_GNU_SOURCE",
     "-DHAVE_CONFIG_H",
