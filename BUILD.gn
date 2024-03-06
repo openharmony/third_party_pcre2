@@ -33,6 +33,7 @@ ohos_shared_library("libpcre2") {
     exec_script("/usr/bin/env",
                 [
                   "cp",
+                  "-f",
                   rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
                   rebase_path("$PCRE2_LIB_DIR/src/config.h"),
                 ])
