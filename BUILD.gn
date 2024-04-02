@@ -29,18 +29,9 @@ ohos_shared_library("libpcre2") {
 
   check_config_result =
       exec_script(md5_check_script, _arguments_config, "string")
-
-  exec_script("/usr/bin/env",
-              [
-                "touch",
-                "/tmp/cp.lock",
-              ])
-
   if (check_config_result == "") {
     exec_script("/usr/bin/env",
                 [
-                  "flock",
-                  "/tmp/cp.lock",
                   "cp",
                   "-f",
                   rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
@@ -57,8 +48,6 @@ ohos_shared_library("libpcre2") {
   if (check_pcre2_result == "") {
     exec_script("/usr/bin/env",
                 [
-                  "flock",
-                  "/tmp/cp.lock",
                   "cp",
                   "-f",
                   rebase_path("$PCRE2_LIB_DIR/src/pcre2.h.generic"),
@@ -76,8 +65,6 @@ ohos_shared_library("libpcre2") {
   if (check_pcre2_chartables_result == "") {
     exec_script("/usr/bin/env",
                 [
-                  "flock",
-                  "/tmp/cp.lock",
                   "cp",
                   "-f",
                   rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c.dist"),
