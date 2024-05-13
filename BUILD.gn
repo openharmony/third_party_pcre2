@@ -22,7 +22,6 @@ config("third_party_pcre2_config") {
 
 pcre2_sources = [
   "$PCRE2_LIB_DIR/src/pcre2_auto_possess.c",
-  "$PCRE2_LIB_DIR/src/pcre2_chartables.c",
   "$PCRE2_LIB_DIR/src/pcre2_compile.c",
   "$PCRE2_LIB_DIR/src/pcre2_config.c",
   "$PCRE2_LIB_DIR/src/pcre2_context.c",
@@ -104,6 +103,7 @@ ohos_shared_library("libpcre2") {
 
   output_name = "libpcre2"
   sources = pcre2_sources
+  sources += [ "$PCRE2_LIB_DIR/src/pcre2_chartables.c" ]
   include_dirs = [ "$PCRE2_LIB_DIR/src" ]
   public_configs = [ ":third_party_pcre2_config" ]
   cflags = [
@@ -129,10 +129,16 @@ ohos_shared_library("libpcre2") {
 }
 
 ohos_static_library("libpcre2_static") {
+  exec_script("/usr/bin/env",
+              [
+                "mkdir",
+                "-p",
+                rebase_path("$PCRE2_LIB_DIR/src_static"),
+              ])
   md5_check_script = rebase_path("$PCRE2_LIB_DIR/check_md5.sh")
   _arguments_config = [
     rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
-    rebase_path("$PCRE2_LIB_DIR/src/config.h"),
+    rebase_path("$PCRE2_LIB_DIR/src_static/config.h"),
   ]
 
   check_config_result =
@@ -143,13 +149,13 @@ ohos_static_library("libpcre2_static") {
                   "cp",
                   "-f",
                   rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
-                  rebase_path("$PCRE2_LIB_DIR/src/config.h"),
+                  rebase_path("$PCRE2_LIB_DIR/src_static/config.h"),
                 ])
   }
 
   _arguments_pcre2 = [
     rebase_path("$PCRE2_LIB_DIR/src/pcre2.h.generic"),
-    rebase_path("$PCRE2_LIB_DIR/src/pcre2.h"),
+    rebase_path("$PCRE2_LIB_DIR/src_static/pcre2.h"),
   ]
 
   check_pcre2_result = exec_script(md5_check_script, _arguments_pcre2, "string")
@@ -159,13 +165,13 @@ ohos_static_library("libpcre2_static") {
                   "cp",
                   "-f",
                   rebase_path("$PCRE2_LIB_DIR/src/pcre2.h.generic"),
-                  rebase_path("$PCRE2_LIB_DIR/src/pcre2.h"),
+                  rebase_path("$PCRE2_LIB_DIR/src_static/pcre2.h"),
                 ])
   }
 
   _arguments_pcre2_chartables = [
     rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c.dist"),
-    rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c"),
+    rebase_path("$PCRE2_LIB_DIR/src_static/pcre2_chartables.c"),
   ]
 
   check_pcre2_chartables_result =
@@ -176,13 +182,15 @@ ohos_static_library("libpcre2_static") {
                   "cp",
                   "-f",
                   rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c.dist"),
-                  rebase_path("$PCRE2_LIB_DIR/src/pcre2_chartables.c"),
+                  rebase_path("$PCRE2_LIB_DIR/src_static/pcre2_chartables.c"),
                 ])
   }
 
   output_name = "libpcre2_static"
   sources = pcre2_sources
+  sources += [ "$PCRE2_LIB_DIR/src_static/pcre2_chartables.c" ]
   include_dirs = [ "$PCRE2_LIB_DIR/src" ]
+  include_dirs += [ "$PCRE2_LIB_DIR/src_static" ]
   public_configs = [ ":third_party_pcre2_config" ]
   cflags = [
     "-D_GNU_SOURCE",
