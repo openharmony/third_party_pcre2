@@ -50,6 +50,8 @@ pcre2_sources = [
 ]
 
 ohos_shared_library("libpcre2") {
+  branch_protector_ret = "pac_ret"
+
   md5_check_script = rebase_path("$PCRE2_LIB_DIR/check_md5.sh")
   _arguments_config = [
     rebase_path("$PCRE2_LIB_DIR/src/config.h.generic"),
