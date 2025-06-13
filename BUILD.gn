@@ -46,6 +46,7 @@ ohos_prebuilt_etc("publish_generic_file") {
   source = get_label_info(":copy_generic_files", "target_gen_dir") + "/src/pcre2_chartables.c"
   output = "pcre2_chartables.c"
   part_name = "pcre2"
+  install_enable = false
   subsystem_name = "thirdparty"
   deps = [":copy_generic_files"]
 }
