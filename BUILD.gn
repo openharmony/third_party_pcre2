@@ -12,7 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import("//build/ohos.gni")
+import("//build/config/components/ets_frontend/ets_frontend_config.gni")
+if (ark_standalone_build) {
+  import("$build_root/ark.gni")
+} else {
+  import("//build/ohos.gni")
+}
 
 PCRE2_LIB_DIR = "//third_party/pcre2/pcre2"
 
@@ -126,6 +131,26 @@ ohos_static_library("libpcre2_static") {
     "-DHAVE_CONFIG_H",
     "-DSUPPORT_PCRE2_8=1",
     "-DPCRE2_CODE_UNIT_WIDTH=8",
+    "-w",
+  ]
+  license_file = "$PCRE2_LIB_DIR/LICENCE"
+  part_name = "pcre2"
+  subsystem_name = "thirdparty"
+}
+
+ohos_static_library("libpcre2_static_16") {
+  deps = [ ":publish_generic_file" ]
+  output_name = "libpcre2_static_16"
+  sources = pcre2_sources
+  sources -= [ "$PCRE2_LIB_DIR/src/pcre2_chkdint.c" ]
+  sources += get_target_outputs(":publish_generic_file")
+  public_configs = [ ":third_party_pcre2_config" ]
+  cflags = [
+    "-D_GNU_SOURCE",
+    "-DHAVE_CONFIG_H",
+    "-DSUPPORT_PCRE2_16=1",
+    "-DSUPPORT_UNICODE=1",
+    "-DPCRE2_CODE_UNIT_WIDTH=16",
     "-w",
   ]
   license_file = "$PCRE2_LIB_DIR/LICENCE"
