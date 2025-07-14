@@ -114,7 +114,7 @@ ohos_shared_library("libpcre2") {
   license_file = "$PCRE2_LIB_DIR/LICENCE"
   innerapi_tags = [
     "platformsdk_indirect",
-    "chipsetsdk_indirect",
+    "chipsetsdk_sp_indirect",
   ]
   part_name = "pcre2"
   subsystem_name = "thirdparty"
