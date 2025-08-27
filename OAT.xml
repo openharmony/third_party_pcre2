@@ -104,17 +104,17 @@
                 <filteritem type="filepath" name="pcre2/doc/index.html.src" desc="no license header"/>
                 <filteritem type="filepath" name="pcre2/doc/pcre2-config.1" desc="no license header"/>
                 <filteritem type="filepath" name="pcre2/doc/pcre2grep.1" desc="no license header"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateUcpTables.py" desc="no license header"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateCommon.py" desc="no license header"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateTest26.py" desc="no license header"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateUcd.py" desc="no license header"/>
+                <filteritem type="filepath" name="pcre2/maint/GenerateUcpHeader.py" desc="no license header"/>
             </filefilter>
             <filefilter name="copyrightPolicyFilter" desc="Filters for copyright header policies">
                 <filteritem type="filepath" name="pcre2/src/sljit/.*.c" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/132html" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/CleanTxt" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/GenerateUtt.py" desc="InvalidCopyright"/>
-                <filteritem type="filepath" name="pcre2/maint/GenerateUcpTables.py" desc="InvalidCopyright"/>
-                <filteritem type="filepath" name="pcre2/maint/GenerateCommon.py" desc="InvalidCopyright"/>
-                <filteritem type="filepath" name="pcre2/maint/GenerateTest26.py" desc="InvalidCopyright"/>
-                <filteritem type="filepath" name="pcre2/maint/GenerateUcd.py" desc="InvalidCopyright"/>
-                <filteritem type="filepath" name="pcre2/maint/GenerateUcpHeader.py" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/ManyConfigTests" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/MultiStage2.py" desc="InvalidCopyright"/>
                 <filteritem type="filepath" name="pcre2/maint/pcre2_chartables.c.non-standard" desc="InvalidCopyright"/>
