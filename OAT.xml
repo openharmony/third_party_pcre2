@@ -2,7 +2,7 @@
 
 <configuration>
     <oatconfig>
-        <licensefile>pcre2/LICENCE</licensefile>
+        <licensefile>pcre2/LICENCE.md</licensefile>
         <policylist>
             <policy name="projectPolicy" desc="">
                 <policyitem type="copyright" name="University of Cambridge" path=".*" rule="may" group="defaultGroup" filefilter="copyrightPolicyFilter" desc=""/>
